@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Small Tools for a Calmer Day</title>
+    <meta
+      name="description"
+      content="A family of tiny, single-purpose apps — each one fixes a single modern friction, gently and without shame."
+    />
+    <meta name="theme-color" content="#13141a" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:title" content="Small Tools for a Calmer Day" />
+    <meta
+      property="og:description"
+      content="Tiny, single-purpose apps that each fix one modern friction — gently, and without shame."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Hanken+Grotesk:wght@400;500;600;700&display=block"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #13141a;
+        --bg2: #0d0e12;
+        --surface: #1c1d25;
+        --surface2: #262833;
+        --line: rgba(225, 228, 245, 0.1);
+        --ink: #ecedf3;
+        --dim: #9ea3b8;
+        --faint: #646980;
+        --accent: #8a93d8;
+        --serif: 'Fraunces', Georgia, serif;
+        --ui: 'Hanken Grotesk', system-ui, sans-serif;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: radial-gradient(130% 80% at 50% 0%, var(--bg), var(--bg2));
+        color: var(--ink);
+        font-family: var(--ui);
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: clamp(48px, 9vw, 90px) 22px 80px;
+      }
+      header {
+        text-align: center;
+        margin-bottom: clamp(40px, 7vw, 64px);
+      }
+      .eyebrow {
+        font-family: var(--ui);
+        font-size: 12.5px;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--faint);
+        margin-bottom: 18px;
+      }
+      h1 {
+        font-family: var(--serif);
+        font-weight: 500;
+        font-size: clamp(32px, 6.5vw, 52px);
+        line-height: 1.08;
+        letter-spacing: -0.02em;
+        margin: 0 0 16px;
+      }
+      h1 em {
+        font-style: italic;
+        color: var(--accent);
+      }
+      .lede {
+        color: var(--dim);
+        font-size: clamp(16px, 2.4vw, 18px);
+        line-height: 1.6;
+        max-width: 540px;
+        margin: 0 auto;
+        text-wrap: pretty;
+      }
+      .group {
+        margin-top: clamp(36px, 6vw, 52px);
+      }
+      .group-h {
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+        margin-bottom: 18px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--line);
+      }
+      .group-h h2 {
+        font-family: var(--serif);
+        font-weight: 500;
+        font-size: 21px;
+        margin: 0;
+        letter-spacing: -0.01em;
+      }
+      .group-h span {
+        font-family: var(--ui);
+        font-size: 12.5px;
+        color: var(--faint);
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 14px;
+      }
+      a.card {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        text-decoration: none;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 20px;
+        transition:
+          transform 0.14s ease,
+          border-color 0.2s ease,
+          background 0.2s ease;
+      }
+      a.card:hover {
+        transform: translateY(-3px);
+        border-color: color-mix(in oklab, var(--c, #8a93d8) 55%, var(--line));
+        background: var(--surface2);
+      }
+      a.card:focus-visible {
+        outline: 2px solid var(--c, #8a93d8);
+        outline-offset: 3px;
+      }
+      .ct {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+      }
+      .dot {
+        width: 30px;
+        height: 30px;
+        border-radius: 9px;
+        flex-shrink: 0;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        background: color-mix(in oklab, var(--c, #8a93d8) 20%, transparent);
+      }
+      .name {
+        font-family: var(--serif);
+        font-weight: 600;
+        font-size: 18px;
+        color: var(--ink);
+        letter-spacing: -0.01em;
+      }
+      .desc {
+        color: var(--dim);
+        font-size: 13.8px;
+        line-height: 1.5;
+        text-wrap: pretty;
+      }
+      footer {
+        text-align: center;
+        margin-top: 64px;
+        color: var(--faint);
+        font-size: 13px;
+        line-height: 1.6;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        a.card {
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <div class="eyebrow">A small collection</div>
+        <h1>Small tools for a <em>calmer</em> day.</h1>
+        <p class="lede">
+          A family of tiny, single-purpose apps — each one fixes a single modern friction, gently
+          and without shame. Minimal by design. Pick one and open it.
+        </p>
+      </header>
+
+      <div class="group">
+        <div class="group-h"><h2>Focus &amp; attention</h2><span>do the deep work</span></div>
+        <div class="grid" id="g-focus"></div>
+      </div>
+      <div class="group">
+        <div class="group-h"><h2>Calm &amp; mind</h2><span>quiet the noise</span></div>
+        <div class="grid" id="g-calm"></div>
+      </div>
+      <div class="group">
+        <div class="group-h"><h2>Evening &amp; sleep</h2><span>end the day well</span></div>
+        <div class="grid" id="g-evening"></div>
+      </div>
+      <div class="group">
+        <div class="group-h"><h2>Body &amp; health</h2><span>look after yourself</span></div>
+        <div class="grid" id="g-body"></div>
+      </div>
+      <div class="group">
+        <div class="group-h"><h2>Family &amp; connection</h2><span>be with your people</span></div>
+        <div class="grid" id="g-family"></div>
+      </div>
+      <div class="group">
+        <div class="group-h">
+          <h2>Habits &amp; restraint</h2>
+          <span>gentle course-corrections</span>
+        </div>
+        <div class="grid" id="g-habit"></div>
+      </div>
+
+      <footer>
+        Each app runs on its own, stores everything on your device, and works offline.<br />
+        Built as calm, minimal, science-leaning tools — never a guilt machine.
+      </footer>
+    </div>
+
+    <script>
+      // [name, liveURL, icon, description, accent]
+      const APPS = {
+        focus: [
+          [
+            'Lock In',
+            'https://lockin-now.netlify.app',
+            '🔒',
+            'Phone down, lock in. A 2-minute promise + a focus charge that drains if you leave.',
+            '#58e08c',
+          ],
+          [
+            'Single-Task',
+            'https://single-task.netlify.app',
+            '◉',
+            'Pick one thing; everything else fades away. Anti-multitasking.',
+            '#d8c8a0',
+          ],
+          [
+            'Zola',
+            'https://studywithzola.netlify.app',
+            '🦒',
+            'Body-doubling: a giraffe studies beside you and cheers you on.',
+            '#ecb24c',
+          ],
+          [
+            'Linger',
+            'https://staywiththepage.netlify.app',
+            '📖',
+            'Rebuild deep-reading attention, one unbroken stretch at a time.',
+            '#b4502a',
+          ],
+        ],
+        calm: [
+          [
+            'Cairn',
+            'https://calm-cairn.netlify.app',
+            '🪨',
+            'Focus, breathe, reset — one stone at a time, with a Pause button.',
+            '#7c8bf5',
+          ],
+          [
+            'Brain Dump',
+            'https://braindump-now.netlify.app',
+            '🧠',
+            'Empty a too-full head in 2 minutes, then sort: today / not today / let go.',
+            '#c08a5a',
+          ],
+          [
+            'Worry Window',
+            'https://worry-window.netlify.app',
+            '🪟',
+            'Park worries; face them all at one scheduled 10-minute worry time.',
+            '#9a8fc0',
+          ],
+          [
+            'Unclench',
+            'https://unclench.netlify.app',
+            '🌀',
+            'Gentle check-ins to drop your shoulders and unclench your jaw.',
+            '#7fa0a8',
+          ],
+        ],
+        evening: [
+          [
+            'Wind Down',
+            'https://windingdown.netlify.app',
+            '🌙',
+            'A reverse-alarm that walks you gently into sleep as the screen dims.',
+            '#8a8fc4',
+          ],
+          [
+            'One Last Thing',
+            'https://onelastthing.netlify.app',
+            '🕯️',
+            'A 3-minute close-the-day ritual instead of doomscrolling in bed.',
+            '#c98a5c',
+          ],
+          [
+            'Rise',
+            'https://rise-gently.netlify.app',
+            '🌅',
+            'A gentle voice and a sunrise that coax you up off the couch.',
+            '#f6a35c',
+          ],
+        ],
+        body: [
+          [
+            'Good Bodies',
+            'https://goodbodies.netlify.app',
+            '🧍',
+            'Desk-worker back health: move breaks, stretches, a 6-week program.',
+            '#5fbf9b',
+          ],
+          [
+            'Saleem · سليم',
+            'https://saleem-daily.netlify.app',
+            '🍲',
+            'Eat well the Egyptian way — hand portions, real dishes. EN/عربي.',
+            '#3fb27f',
+          ],
+          [
+            'Water + Up',
+            'https://water-up.netlify.app',
+            '💧',
+            'One nudge, two wins: a glass of water and 30 seconds on your feet.',
+            '#3fa6c8',
+          ],
+        ],
+        family: [
+          [
+            'Here',
+            'https://fullyhere.netlify.app',
+            '💛',
+            'Five minutes, fully here — the proven daily child-led play ritual.',
+            '#e0795a',
+          ],
+          [
+            'Play With Me',
+            'https://comeplaywithme.netlify.app',
+            '🪁',
+            'Too tired to think? Tap once for one doable thing to do together.',
+            '#5b9e74',
+          ],
+        ],
+        habit: [
+          [
+            'Essentials',
+            'https://my-essentials.netlify.app',
+            '✦',
+            'Only the few things that matter today. A hard cap of three.',
+            '#6f8a72',
+          ],
+          [
+            'Enough',
+            'https://enough-phone.netlify.app',
+            '◐',
+            'Use your phone on purpose: a daily budget + a breathe-first speed bump.',
+            '#5fa3c0',
+          ],
+          [
+            'Sleep On It',
+            'https://sleep-on-it.netlify.app',
+            '🛒',
+            'A 24-hour pause for impulse buys. Still want it tomorrow?',
+            '#4f9d8c',
+          ],
+        ],
+      };
+
+      const esc = (s) =>
+        String(s).replace(
+          /[&<>"']/g,
+          (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c],
+        );
+
+      for (const [key, list] of Object.entries(APPS)) {
+        const el = document.getElementById('g-' + key);
+        if (!el) continue;
+        el.innerHTML = list
+          .map(
+            ([name, url, icon, desc, c]) =>
+              `<a class="card" style="--c:${esc(c)}" href="${esc(url)}" target="_blank" rel="noopener">
+             <div class="ct"><span class="dot" style="color:${esc(c)}">${esc(icon)}</span><span class="name">${esc(name)}</span></div>
+             <div class="desc">${esc(desc)}</div>
+           </a>`,
+          )
+          .join('');
+      }
+    </script>
+  </body>
+</html>
