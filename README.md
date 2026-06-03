@@ -17,6 +17,7 @@ that runs on its own, stores everything on your device, and works offline.
 **Family & connection:** Here · Play With Me · I Forgot to Say Sorry
 **Faith & gratitude:** Grateful Heart · Munajaa (مناجاة)
 **Learning & play:** Number Ninjas · Name It · Type-Down
+**Dev & reference:** DevRef · React Course Notes
 
 ## Editing
 
